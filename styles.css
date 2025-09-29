@@ -248,3 +248,12 @@ body {
     opacity: 1;
   }
 }
+
+.calendar-icon {
+  position: absolute;
+  left: 15%;
+  transform: translateX(-50%);
+  height: 100px;
+  z-index: 3;
+  cursor: pointer;
+}
