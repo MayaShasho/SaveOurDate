@@ -28,6 +28,13 @@
   --font-family-secondary: 'dm-sans', sans-serif;
 }
 
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -37,7 +44,9 @@
 body {
   display: flex;
   min-height: 100vh;
+  height: 100%;
   margin: 0;
+  padding: 0;
   background-size: cover;
   background-position: center;
   color: white;
@@ -46,14 +55,19 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow-x: hidden;
 
   .content {
+    min-height: 100vh;
     min-height: 100dvh;
     width: 100vw;
+    height: 100%;
     overflow: hidden;
     background-color: var(--primary-color);
     z-index: 2;
     position: relative;
+    display: flex;
+    flex-direction: column;
 
     .maya-on {
       position: absolute;
@@ -207,6 +221,8 @@ body {
     left: 0;
     right: 0;
     width: 100%;
+    height: 50vh;
+    min-height: 300px;
 
     &::before {
       content: '';
@@ -221,11 +237,11 @@ body {
     }
 
     img {
-      height: auto;
+      height: 100%;
       width: 100%;
       display: block;
       object-fit: cover;
-      min-height: 300px;
+      object-position: center;
     }
   }
 }
@@ -263,4 +279,49 @@ body {
   height: 100px;
   z-index: 3;
   cursor: pointer;
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  body {
+    min-height: -webkit-fill-available;
+  }
+
+  .content {
+    min-height: -webkit-fill-available;
+  }
+
+  .image-container {
+    height: 40vh;
+    min-height: 250px;
+  }
+}
+
+/* Additional mobile viewport fixes */
+@media screen and (max-width: 768px) {
+  html {
+    height: -webkit-fill-available;
+  }
+
+  body {
+    min-height: -webkit-fill-available;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .content {
+    min-height: -webkit-fill-available;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container {
+    bottom: 0;
+    height: 45vh;
+    min-height: 280px;
+    max-height: 400px;
+  }
 }
