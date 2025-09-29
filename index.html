@@ -1,183 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Save the Date</title>
-  <style>
-    body {
-      background: #1e1e1e;
-      color: #d4d4d4;
-      font-family: 'Fira Code', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      min-height: 100dvh;
-    }
-    .editor {
-      background: #252526;
-      border-radius: 8px;
-      padding: 20px;
-      width: 650px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      position: relative;
-      transition: opacity 0.8s ease;
-    }
-    .code {
-      white-space: pre-wrap;
-      font-size: 16px;
-      line-height: 1.5em;
-      min-height: 200px;
-    }
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      background: #d4d4d4;
-      animation: blink 1s infinite;
-      margin-left: 2px;
-    }
-    @keyframes blink {
-      50% { background: transparent; }
-    }
-    .run-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #0e639c;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .terminal {
-      margin-top: 20px;
-      background: #111;
-      color: #0f0;
-      padding: 15px;
-      border-radius: 6px;
-      display: none;
-      width: 650px;
-    }
-    .image-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(30, 30, 30, 0.95);
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 1000;
-      animation: fadeIn 1s ease forwards;
-    }
-    .image-container img {
-      max-width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Syntax Highlighting */
-    .keyword { color: #569CD6; }
-    .function { color: #DCDCAA; }
-    .string { color: #CE9178; }
-    .comment { color: #6A9955; font-style: italic; }
-    .number { color: #B5CEA8; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Our Date</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class="editor" id="editor">
-    <button class="run-btn">▶️ Run</button>
-    <div class="code" id="code"></div>
-  </div>
-  <div class="terminal" id="terminal"></div>
-  <div class="image-container" id="imageContainer">
-    <!-- <h2>💍 Maya ❤️ On – Save the Date: 05.06.2026 📍 Tel Aviv</h2> -->
-    <img src="your-photo.png" alt="Our Photo">
-  </div>
 
-  <script>
-    const codeElement = document.getElementById("code");
-    const terminal = document.getElementById("terminal");
-    const imageContainer = document.getElementById("imageContainer");
-    const runBtn = document.querySelector(".run-btn");
-    const editor = document.getElementById("editor");
-
-    const codeText = `<span class="comment">// Wedding Invitation Script</span>
-
-<span class="keyword">function</span> <span class="function">saveTheDate</span>(couple, date, location) {
-  console.log(<span class="string">\`Initializing wedding protocol for \${couple}...\`</span>);
-  console.log(<span class="string">"Loading modules: love.js, laughter.js ,forever.js "</span>);
-
-  setTimeout(() => {
-    console.log(<span class="string">\`Save the Date: \${date}\`</span>);
-    console.log(<span class="string">\`Location: \${location}\`</span>);
-    console.log(<span class="string">"Compiling happily-ever-after..."</span>);
-
-    setTimeout(() => {
-      console.log(<span class="string">"Build successful!"</span>);
-      console.log(<span class="string">"Output: 🥂 You're invited to celebrate with us!"</span>);
-    }, <span class="number">2000</span>);
-
-  }, <span class="number">1500</span>);
-}
-
-<span class="function">saveTheDate</span>(<span class="string">"On & Maya"</span>, <span class="string">"05.06.2026"</span>, <span class="string">"Bon Bon, Tel Aviv"</span>);`;
-
-    let i = 0;
-    function typeCode() {
-      if (i < codeText.length) {
-        codeElement.innerHTML = codeText.substring(0, i) + '<span class="cursor"></span>';
-        i++;
-        setTimeout(typeCode, 12); // writing speed
-      } else {
-        codeElement.innerHTML = codeText + '<span class="cursor"></span>';
-      }
-    }
-
-    typeCode();
-
-    runBtn.addEventListener("click", () => {
-      runBtn.disabled = true;
-      editor.style.opacity = 0; // hide code editor smoothly
-      setTimeout(() => {
-        editor.style.display = "none";
-        terminal.style.display = "block";
-      }, 800);
-
-      const logs = [
-        " Initializing wedding protocol for On & Maya...",
-        " Loading modules: love.js , laughter.js , forever.js ",
-        " Save the Date: 05.06.2026",
-        " Location: Bon Bon, Tel Aviv",
-        " Compiling happily-ever-after...",
-        " Build successful!",
-        " Output: 🥂 You're invited to celebrate with us!"
-      ];
-
-      let j = 0;
-      function printLog() {
-        if (j < logs.length) {
-          terminal.innerHTML += logs[j] + "<br>";
-          j++;
-          setTimeout(printLog, 900);
-        } else {
-          setTimeout(() => {
-            imageContainer.style.display = "flex"; // full overlay
-          }, 2000); // wait 2 seconds after logs finish
-        }
-      }
-      printLog();
-    });
-  </script>
+    <div class="content">
+        <div class="maya-on">
+            <div class="letter-container">
+                <div class="maya">M</div>
+            </div>
+            <div class="letter-container">
+                <div class="on">O</div>
+            </div>
+            <div class="maya-line"></div>
+        </div>
+        <p class="save-our-date">Save our date</p>
+        <h1>Maya & on</h1>
+        <div class="date">
+            <p class="day">05</p>
+            <p class="month">06</p>
+            <p class="year">26</p>
+            <div class="date-line"></div>
+        </div>
+        <p class="location">Bon Bon, <span>Tel Aviv</span></p>
+        <div class="countdown">
+            <div class="intro">
+                <div class="cd">
+                    <div class="cd__unit-group">
+                        <div class="cd__unit">
+                            <div class="cd__digits">
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                            </div>
+                            <div class="cd__unit-label">Month(s)</div>
+                        </div>
+                        <div class="cd__unit">
+                            <div class="cd__digits">
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                            </div>
+                            <div class="cd__unit-label">Day(s)</div>
+                        </div>
+                    </div>
+                    <div class="cd__unit-group">
+                        <div class="cd__unit">
+                            <div class="cd__digits">
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                            </div>
+                            <div class="cd__unit-label">Hour(s)</div>
+                        </div>
+                        <div class="cd__unit">
+                            <div class="cd__digits">
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                            </div>
+                            <div class="cd__unit-label">Minute(s)</div>
+                        </div>
+                        <div class="cd__unit">
+                            <div class="cd__digits">
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                                <div class="cd__digit" data-col>
+                                    <div data-pos="next">-</div>
+                                    <div data-pos="prev">-</div>
+                                </div>
+                            </div>
+                            <div class="cd__unit-label">Second(s)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="assets/images/maya_and_on.jpg" alt="maya_and_on">
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
