@@ -93,7 +93,7 @@ body {
     }
 
     .save-our-date {
-      margin-top: -4rem;
+      margin-top: -9rem;
     }
 
     h1 {
@@ -112,7 +112,7 @@ body {
 
       .date-line {
         width: 1px;
-        height: 450px;
+        height: 250px;
         background-color: white;
         position: absolute;
         left: 50%;
