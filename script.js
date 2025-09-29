@@ -31,7 +31,7 @@ function createEntranceAnimation() {
   const tl = gsap.timeline();
 
   // Set initial states for all animated elements
-  gsap.set(['.date p', '.location', '.save-our-date', '.countdown'], {
+  gsap.set(['h1', '.date p', '.location', '.save-our-date', '.countdown', '.image-container'], {
     opacity: 0,
     y: 50
   });
@@ -49,12 +49,27 @@ function createEntranceAnimation() {
     x: -50, // Start hidden to the right of its container
   });
 
-  // Animate the lines first - they draw in
-  tl.to('.maya-line', {
+  // Set initial state for image - start from bottom
+  gsap.set('.image-container', {
+    y: 100, // Start further down from the bottom
+    opacity: 0
+  });
+
+  // Start with h1 "Maya & On" as the first element
+  tl.to('h1', {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: 'back.out(1.7)'
+  })
+
+  // Animate the lines - they draw in
+  .to('.maya-line', {
     scaleY: 1,
     duration: 1.2,
     ease: 'power2.out'
-  })
+  }, '-=0.5') // Start while h1 is still animating
+
   .to('.date-line', {
     scaleY: 1,
     duration: 1.2,
@@ -91,7 +106,7 @@ function createEntranceAnimation() {
     ease: 'back.out(1.7)'
   }, '-=0.4')
 
-  // Finally the save our date text with a bouncy effect
+  // Then the save our date text with a bouncy effect
   .to('.save-our-date', {
     opacity: 1,
     y: 0,
@@ -99,13 +114,21 @@ function createEntranceAnimation() {
     ease: 'elastic.out(1, 0.75)'
   }, '-=0.2')
 
-  // Add a subtle fade-in for the countdown after everything else
+  // Add a subtle fade-in for the countdown
   .to('.countdown', {
     opacity: 1,
     y: 0,
     duration: 0.8,
     ease: 'power2.out'
-  }, '-=0.5');
+  }, '-=0.5')
+
+  // Finally animate the image from the bottom
+  .to('.image-container', {
+    opacity: 1,
+    y: 0,
+    duration: 1.2,
+    ease: 'power2.out'
+  }, '-=0.3'); // Start slightly before countdown finishes
 }
 
 class SaveTheDateCountdown {

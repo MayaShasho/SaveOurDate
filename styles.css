@@ -54,12 +54,11 @@ body {
     background-color: var(--primary-color);
     z-index: 2;
     position: relative;
-    align-content: center;
 
     .maya-on {
       position: absolute;
       top: 3rem;
-      right: 4rem;
+      right: 2rem;
       line-height: normal;
       font-size: 3rem;
       letter-spacing: 0.3rem;
@@ -75,7 +74,7 @@ body {
 
       .maya-line {
         width: 1px;
-        height: 300px;
+        height: 200%;
         background-color: white;
         position: absolute;
         bottom: 0;
@@ -85,25 +84,23 @@ body {
       }
     }
 
-    .save-our-date,
+    .save-our-date {
+      letter-spacing: 0.4rem;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      text-align: center;
+      margin-top: 20vh;
+    }
+
     h1 {
       letter-spacing: 0.7rem;
-      font-size: clamp(2rem, 5vw, 3.5rem);
       text-align: center;
-    }
-
-    .save-our-date {
-      margin-top: -9rem;
-    }
-
-    h1 {
-      font-size: 1rem !important;
+      font-size: clamp(1rem, 5vw, 2.5rem);
       margin-top: 1rem;
     }
 
     .date {
       position: absolute;
-      font-size: 4rem;
+      font-size: min(3rem, 13vw);
       letter-spacing: 0.5rem;
       bottom: 6rem;
       left: 2rem;
@@ -139,12 +136,9 @@ body {
       padding-top: 1rem;
       letter-spacing: 0.3rem;
       text-transform: uppercase;
-      /* font-family: dm-sans, sans-serif; */
       font-variant-numeric: tabular-nums;
       background: var(--primary-color);
       z-index: 2;
-      /* text-shadow: 0 0 5px var(--glowing-color), rgb(228, 184, 217), 0 0 10px var(--glowing-color),
-        0 0 20px var(--glowing-color), 0 0 40px var(--glowing-color); */
 
       .intro {
         display: flex;
@@ -175,15 +169,12 @@ body {
               .cd__digits {
                 font-weight: bold;
                 height: 50%;
-                /* margin-bottom: 0.3rem; */
                 overflow: hidden;
-                /* text-shadow: 0 0 3px var(--glowing-color), 0 0 6px var(--glowing-color); */
                 position: relative;
                 display: flex;
                 justify-content: center;
 
                 .cd__digit {
-                  /* width: 1ch; */
                   position: relative;
                   letter-spacing: 0;
 
@@ -217,7 +208,7 @@ body {
     &::before {
       content: '';
       position: absolute;
-      background: linear-gradient(to bottom, var(--primary-color) 20%, transparent 100%);
+      background: linear-gradient(to bottom, var(--primary-color) 0%, transparent 30%);
       pointer-events: none;
       height: 14rem;
       width: 160%;
@@ -232,7 +223,6 @@ body {
   }
 }
 
-/* Standalone animation classes */
 .cd__next-digit-fade {
   animation: fade 0.5s ease-in-out;
 }
