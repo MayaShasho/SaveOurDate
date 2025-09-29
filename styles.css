@@ -100,21 +100,23 @@ body {
 
     .save-our-date {
       letter-spacing: 0.4rem;
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-size: clamp(2.5rem, 10vw, 5rem);
       text-align: center;
       margin-top: 20vh;
+      z-index: 2;
     }
 
     h1 {
       letter-spacing: 0.7rem;
       text-align: center;
-      font-size: clamp(1rem, 5vw, 2.5rem);
+      font-size: clamp(1rem, 5vw, 2rem);
       margin-top: 1rem;
+      z-index: 2;
     }
 
     .date {
       position: absolute;
-      font-size: min(3rem, 13vw);
+      font-size: min(7rem, 13vw);
       letter-spacing: 0.5rem;
       bottom: 6rem;
       left: 2rem;
@@ -151,14 +153,12 @@ body {
       letter-spacing: 0.3rem;
       text-transform: uppercase;
       font-variant-numeric: tabular-nums;
-      background: var(--primary-color);
       z-index: 2;
 
       .intro {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: var(--primary-color);
 
         .cd {
           flex-wrap: wrap;
@@ -225,9 +225,9 @@ body {
     &::before {
       content: '';
       position: absolute;
-      background: linear-gradient(to bottom, var(--primary-color) 0%, transparent 30%);
+      background: linear-gradient(to bottom, var(--primary-color) 0%, transparent 60%);
       pointer-events: none;
-      height: 14rem;
+      height: 50%;
       width: 160%;
       left: 50%;
       transform: translateX(-50%);
@@ -240,6 +240,7 @@ body {
       display: block;
       object-fit: cover;
       object-position: center;
+      max-height: 50vh;
     }
   }
 }
@@ -272,9 +273,7 @@ body {
 
 .calendar-icon {
   position: absolute;
-  left: 15%;
-  transform: translateX(-50%);
-  height: 100px;
+  height: 150px;
   z-index: 3;
   cursor: pointer;
 }
@@ -292,6 +291,10 @@ body {
 
 /* Additional mobile viewport fixes */
 @media screen and (max-width: 768px) {
+.calendar-icon {
+    height: 100px;
+  }
+
   html {
     height: -webkit-fill-available;
   }

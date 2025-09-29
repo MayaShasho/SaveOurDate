@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Initialize the countdown
   var countDownDate = new Date('Jun 5, 2026 17:30:00').getTime();
 
   var x = setInterval(function () {
@@ -22,113 +21,152 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const uec = new SaveTheDateCountdown('.cd');
 
-  // GSAP Entrance Animation Timeline
   createEntranceAnimation();
 });
 
 function createEntranceAnimation() {
-  // Create main timeline
   const tl = gsap.timeline();
 
-  // Set initial states for all animated elements
   gsap.set(['h1', '.date p', '.location', '.save-our-date', '.countdown', '.image-container'], {
     opacity: 0,
-    y: 50
+    y: 50,
   });
 
   gsap.set(['.maya-line', '.date-line'], {
-    scaleY: 0
+    scaleY: 0,
   });
 
-  // Set initial states for M and O letters - they start hidden outside their containers
+  gsap.set('.calendar-icon', {
+    opacity: 0,
+    scale: 0.5,
+  });
+
   gsap.set('.maya', {
-    x: 50, // Start hidden to the left of its container
+    x: 50,
   });
 
   gsap.set('.on', {
-    x: -50, // Start hidden to the right of its container
+    x: -50,
   });
 
-  // Set initial state for image - start from bottom
   gsap.set('.image-container', {
-    y: 100, // Start further down from the bottom
-    opacity: 0
+    y: 100,
+    opacity: 0,
   });
 
-  // Start with h1 "Maya & On" as the first element
   tl.to('h1', {
     opacity: 1,
     y: 0,
     duration: 1,
-    ease: 'back.out(1.7)'
+    ease: 'back.out(1.7)',
   })
 
-  // Animate the lines - they draw in
-  .to('.maya-line', {
-    scaleY: 1,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, '-=0.5') // Start while h1 is still animating
+    .to(
+      '.maya-line',
+      {
+        scaleY: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+      },
+      '-=0.5'
+    )
 
-  .to('.date-line', {
-    scaleY: 1,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, '-=0.8') // Start 0.8s before previous animation ends
+    .to(
+      '.date-line',
+      {
+        scaleY: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+      },
+      '-=0.8'
+    )
 
-  // After the maya line is drawn, make the letters slide into view
-  .to('.maya', {
-    x: 0, // Slide M from left into view
-    duration: 0.8,
-    ease: 'back.out(1.7)'
-  }, '-=0.3') // Start while line is still drawing
+    .to(
+      '.maya',
+      {
+        x: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+      },
+      '-=0.3'
+    )
 
-  .to('.on', {
-    x: 0, // Slide O from right into view
-    duration: 0.8,
-    ease: 'back.out(1.7)'
-  }, '-=0.4') // Start shortly after M begins
+    .to(
+      '.on',
+      {
+        x: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+      },
+      '-=0.4'
+    )
 
-  // Then animate the date numbers
-  .to('.date p', {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    ease: 'power2.out',
-    stagger: 0.1 // Animate each date digit with slight delay
-  }, '-=0.4')
+    .to(
+      '.date p',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.1,
+      },
+      '-=0.4'
+    )
 
-  // Then location
-  .to('.location', {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    ease: 'back.out(1.7)'
-  }, '-=0.4')
+    .to(
+      '.location',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+      },
+      '-=0.4'
+    )
 
-  // Then the save our date text with a bouncy effect
-  .to('.save-our-date', {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    ease: 'elastic.out(1, 0.75)'
-  }, '-=0.2')
+    .to(
+      '.save-our-date',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'elastic.out(1, 0.75)',
+      },
+      '-=0.2'
+    )
 
-  // Add a subtle fade-in for the countdown
-  .to('.countdown', {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    ease: 'power2.out'
-  }, '-=0.5')
+    .to(
+      '.countdown',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+      },
+      '-=0.5'
+    )
 
-  // Finally animate the image from the bottom
-  .to('.image-container', {
-    opacity: 1,
-    y: 0,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, '-=0.3'); // Start slightly before countdown finishes
+    .to(
+      '.calendar-icon',
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+      },
+      '-=0.3'
+    )
+
+    .to(
+      '.image-container',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power2.out',
+      },
+      '-=0.3'
+    );
 }
 
 class SaveTheDateCountdown {
