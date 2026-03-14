@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function createEntranceAnimation() {
   const tl = gsap.timeline();
 
-  gsap.set(['h1', '.date p', '.location', '.save-our-date', '.countdown', '.image-container'], {
+  gsap.set(['h1', '.date p', '.location', '.save-our-date', '.countdown', '.image-container', '.babysitter'], {
     opacity: 0,
     y: 50,
   });
@@ -137,6 +137,16 @@ function createEntranceAnimation() {
 
     .to(
       '.countdown',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+      },
+      '-=0.5'
+    )
+
+    .to('.babysitter',
       {
         opacity: 1,
         y: 0,
